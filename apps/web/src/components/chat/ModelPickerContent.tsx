@@ -34,6 +34,8 @@ type ModelPickerItem = {
   name: string;
   shortName?: string;
   subProvider?: string;
+  maxContextWindowTokens?: number;
+  billingMultiplier?: number;
   instanceId: ProviderInstanceId;
   driverKind: ProviderDriverKind;
   instanceDisplayName: string;
@@ -285,6 +287,12 @@ export const ModelPickerContent = memo(function ModelPickerContent(props: {
             name: model.name,
             ...(model.shortName ? { shortName: model.shortName } : {}),
             ...(model.subProvider ? { subProvider: model.subProvider } : {}),
+            ...(model.maxContextWindowTokens !== undefined
+              ? { maxContextWindowTokens: model.maxContextWindowTokens }
+              : {}),
+            ...(model.billingMultiplier !== undefined
+              ? { billingMultiplier: model.billingMultiplier }
+              : {}),
             driverKind: model.driverKind,
             providerDisplayName: model.instanceDisplayName,
           }),
